@@ -20,7 +20,7 @@
 | 7-8 | Users explicitly say they'd pay, or already pay for inferior solutions |
 | 9-10 | Users actively searching for paid solutions, complaining about lack of options |
 
-### Existing Alternatives (1-10)
+### Alternative Gap (1-10)
 Higher = fewer/worse alternatives = more opportunity
 | Score | Criteria |
 |-------|----------|
@@ -50,7 +50,7 @@ Higher = cheaper/faster
 | 7-8 | <$200/month infrastructure, 1-2 weeks to launch |
 | 9-10 | Near-zero infra (static/edge), <1 week to launch |
 
-## Phase 5: Final Validation Scoring
+## Phase 3: Final Validation Scoring
 
 ### Pain Severity (1-10)
 Based on review emotion intensity and complaint frequency:
