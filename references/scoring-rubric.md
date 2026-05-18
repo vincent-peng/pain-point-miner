@@ -1,96 +1,96 @@
 # Scoring Rubric
 
-## Phase 2: 5-Angle PM Challenge Scoring
+Use this for Phase 2 PM challenge and Phase 3 final validation. Apply fatal-flag caps after scoring.
+
+## Phase 2: PM Challenge Scoring
 
 ### Need Strength (1-10)
 | Score | Criteria |
 |-------|----------|
 | 1-2 | Hypothetical problem, no real complaints found |
-| 3-4 | 1-2 complaints found, low emotion, workarounds exist |
-| 5-6 | 3+ complaints across 2+ platforms, some emotion |
-| 7-8 | Recurring complaints on 3+ platforms, users describe impact on daily life |
-| 9-10 | Multiple people explicitly say they'd pay, no good workaround exists |
+| 3-4 | 1-2 weak complaints, low emotion, easy workarounds |
+| 5-6 | 3+ complaints across 2+ sources, some emotion |
+| 7-8 | Recurring complaints across 3+ sources, clear impact on workflow/life |
+| 9-10 | Explicit pay intent, costly pain, no good workaround |
 
 ### Willingness to Pay (1-10)
 | Score | Criteria |
 |-------|----------|
-| 1-2 | Free alternatives exist and users are satisfied with them |
-| 3-4 | Free alternatives exist but users complain about them |
-| 5-6 | Some paid apps exist, users tolerate pricing |
-| 7-8 | Users explicitly say they'd pay, or already pay for inferior solutions |
-| 9-10 | Users actively searching for paid solutions, complaining about lack of options |
+| 1-2 | Users expect free; no buyer or budget |
+| 3-4 | Free alternatives exist; users complain but do not pay |
+| 5-6 | Some paid apps/services exist; pricing tolerated |
+| 7-8 | Users already pay for inferior solutions or mention paying |
+| 9-10 | Active search for paid solutions; clear budget owner |
 
 ### Alternative Gap (1-10)
-Higher = fewer/worse alternatives = more opportunity
+Higher = fewer/worse alternatives = more opportunity.
+
 | Score | Criteria |
 |-------|----------|
-| 1-2 | Dominant market leader with high satisfaction, no declining ratings |
-| 3-4 | 3+ strong direct competitors, most users satisfied |
-| 5-6 | Direct competitors exist but have consistent complaints |
-| 7-8 | Top competitor has declining recent ratings (gap > 0.5 stars) |
-| 9-10 | No direct competitors, or all direct competitors have recent rating collapse |
+| 1-2 | Dominant satisfied leaders; no wedge |
+| 3-4 | 3+ strong direct competitors, high satisfaction |
+| 5-6 | Competitors exist with repeated complaints |
+| 7-8 | Direct competitors show recent decline or consistent failure |
+| 9-10 | No direct competitor despite strong WTP, or all direct options fail badly |
+
+### Founder Fit (1-10)
+| Score | Criteria |
+|-------|----------|
+| 1-2 | No access to users, domain, distribution, or trust path |
+| 3-4 | Buildable but acquisition/domain trust looks hard |
+| 5-6 | Some reachable channels or personal interest, no strong edge |
+| 7-8 | Clear user access, domain familiarity, or distribution wedge |
+| 9-10 | Unfair advantage: audience, design partners, domain access, or existing channel |
 
 ### Technical Feasibility (1-10)
-Higher = easier to build
+Higher = easier to build.
+
 | Score | Criteria |
 |-------|----------|
-| 1-2 | Requires deep domain expertise, custom hardware, or regulatory approval |
-| 3-4 | Complex backend, real-time processing, or significant ML needed |
-| 5-6 | Standard CRUD + some complexity, 2-4 weeks solo |
-| 7-8 | Mostly frontend, standard APIs, 7-10 days solo with AI tools |
-| 9-10 | Simple wrapper/utility, 3-5 days solo with AI tools |
+| 1-2 | Requires hardware, deep ML, regulatory approval, or high liability |
+| 3-4 | Complex backend/integrations/reliability requirements |
+| 5-6 | Standard CRUD + moderate complexity; 2-4 weeks solo |
+| 7-8 | Standard APIs/UI; 7-14 days solo with AI tools |
+| 9-10 | Simple wrapper/utility; 3-5 days solo |
 
 ### Startup Cost (1-10)
-Higher = cheaper/faster
+Higher = cheaper/faster.
+
 | Score | Criteria |
 |-------|----------|
-| 1-2 | >$5k/month infrastructure, 3+ months to launch |
-| 3-4 | $1-5k/month infrastructure, 1-3 months to launch |
-| 5-6 | $200-1k/month infrastructure, 2-4 weeks to launch |
-| 7-8 | <$200/month infrastructure, 1-2 weeks to launch |
-| 9-10 | Near-zero infra (static/edge), <1 week to launch |
+| 1-2 | >$5k/month infra or 3+ months to launch |
+| 3-4 | $1-5k/month infra or 1-3 months |
+| 5-6 | $200-1k/month infra or 2-4 weeks |
+| 7-8 | <$200/month infra or 1-2 weeks |
+| 9-10 | Near-zero infra and <1 week |
 
 ## Phase 3: Final Validation Scoring
 
-### Pain Severity (1-10)
-Based on review emotion intensity and complaint frequency:
-- 1-3: Mild inconvenience, "it would be nice"
-- 4-6: Recurring frustration, impacts workflow
-- 7-8: Daily pain, users describe emotional impact
-- 9-10: Users furious, uninstalling, 1-star bombing, no workaround
+Use after a market-specific validation route.
 
-### Market Size (1-10)
-Based on Direct competitor downloads, NOT adjacent giants:
-- 1-3: <10k monthly downloads across all direct competitors
-- 4-6: 10-100k monthly downloads
-- 7-8: 100k-1M monthly downloads
-- 9-10: >1M monthly downloads
-
-### Competition Gap (1-10)
-- 1-3: Saturated, all apps highly rated, no complaints
-- 4-6: Some gaps, but competitors actively improving
-- 7-8: Clear gap, top competitors have consistent failures
-- 9-10: Massive gap, declining leaders, users actively seeking alternatives
-
-### Monetization Potential (1-10)
-- 1-3: Users expect free, no paid competitors
-- 4-6: Freemium works, some paid tier adoption
-- 7-8: Users pay $5-15/month for current solutions
-- 9-10: Users pay $15+/month or enterprise budgets exist
-
-### Build Difficulty (1-10, inverse)
-Higher = easier:
-- 1-3: Requires ML training, hardware, or regulatory approval
-- 4-6: Complex app, multiple integrations, 3+ weeks
-- 7-8: Moderate app, standard patterns, 1-2 weeks
-- 9-10: Simple app, mostly UI, <1 week
+| Dimension | Score basis |
+|-----------|-------------|
+| Pain severity | review emotion, complaint frequency, cost/time/risk impact |
+| Market size | direct competitor demand, not adjacent giants |
+| Competition gap | consistent unresolved failures, switching triggers |
+| Monetization potential | pricing, paid competitors, buyer urgency |
+| Founder fit | distribution, domain access, ability to validate |
+| Build difficulty | inverse difficulty; higher = easier |
 
 ## Verdict Thresholds
 
-| Overall Score | Verdict |
-|---------------|---------|
-| ≥ 8 | BUILD — strong signal across multiple dimensions |
-| 7-7.9 | BUILD — with clear differentiation story |
-| 6-6.9 | PROMISING — but needs X first (specify X) |
-| 5-5.9 | WEAK — suggest 2-3 adjacent niches that might score higher |
-| < 5 | SKIP — move on |
+| Overall / Opportunity | Verdict |
+|-----------------------|---------|
+| ≥8 avg or 80+ score | BUILD candidate |
+| 7-7.9 avg or 65-79 score | BUILD only with clear differentiation/wedge |
+| 6-6.9 avg or 50-64 score | PROMISING/PIVOT — validate specific risk first |
+| 5-5.9 avg | WEAK — suggest adjacent pivots |
+| <5 avg or <50 score | SKIP |
+
+## Calibration Rules
+
+- Easy build does not compensate for weak WTP.
+- Few competitors does not automatically mean opportunity.
+- Adjacent giants do not prove direct niche revenue.
+- Recent review decline is a strong opportunity signal only if complaints map to a solvable wedge.
+- If a score feels high but the acquisition path is vague, lower Founder Fit.

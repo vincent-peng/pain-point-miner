@@ -1,47 +1,60 @@
 ---
 name: pain-point-miner
-description: Mine real user complaints into app/product opportunities, then validate concepts with PM scoring and App Store competitor/review analysis. Use for app idea generation, niche research, pain-point mining, frustration/complaint analysis, product validation, market-gap research, App Store competitor checks, or deciding whether a consumer app concept is worth building.
+description: Orchestrate cross-market pain-point mining and opportunity triage from real complaints, product reviews, forums, and competitor signals. Use for finding pain clusters, validating whether complaints indicate a real opportunity, comparing niches, applying evidence cards/fatal flags/founder-fit checks, or routing to specialist market research. Not for standalone App Store competitor/review research; use app-store-product-researcher for pure iOS/App Store validation.
 ---
 
 # Pain Point Miner
 
-Real complaints → PM challenge → App Store validation. Three phases, one flow.
+Real complaints → evidence cards → PM challenge → market router → brutal BUILD / PIVOT / SKIP.
+
+Pain Point Miner is the **orchestrator**. It should not duplicate specialist skills. Route mobile/App Store work to `app-store-product-researcher` when available.
 
 ## Phase Selection
 
 | Situation | Run |
 |-----------|-----|
-| No idea yet | Phase 1 only |
-| Have an idea, need quick screen | Phase 2 only |
-| Have an idea, want full validation | Phase 2 → Phase 3 (if ≥ 6) |
-| Want to find AND validate | Phase 1 → 2 → 3 |
+| No idea yet | Phase 1 → 2 |
+| Have an idea, need quick screen | Phase 2 |
+| Have an idea, want full validation | Phase 2 → 3 if evidence survives |
+| Mobile/iOS niche | Phase 1 can use App Store reviews; Phase 3 delegates to App Store Product Researcher |
+| Comparing niches | Multi-agent or one niche per pass → rank |
+| User wants adversarial validation | Phase 2 + fatal flags + skeptic pass |
 
-## Phase 1: Mine Frustration Signals
+## Phase 1: Mine Pain Signals
 
-Search Reddit, X, HN, V2EX, 豆瓣, niche forums for frustration signals.
+Search for real frustration from social posts, forums, reviews, and competitor complaints.
 
-Read [references/frustration-signals.md](references/frustration-signals.md) for platform-specific search queries, signal tiers (Strong Buy Intent → Speculative), deduplication rules, domain coverage checklist, and noise filters.
+Read [references/frustration-signals.md](references/frustration-signals.md) for query patterns, signal tiers, sources, dedupe, and noise filters.
+
+For mobile/app niches, also use App Store review mining via `app-store-product-researcher` if available. App reviews are high-intent, post-install pain signals.
 
 ### Output
 
-| # | Complaint | Pain Point | Signal | Source |
-|---|-----------|-----------|--------|--------|
+| # | Pain Cluster | Evidence | Source Breadth | Confidence |
+|---|--------------|----------|----------------|------------|
 
-Signal: 🔴 (3+ independent complaints across platforms) / 🟡 (2) / 🟢 (1, strong emotion)
+After the table, list **Top 5 Recurring Topics** with: independent source count, paid-solution evidence, competitor category, and one-line opportunity.
 
-Scale breadth to the request: 10-15 pain points for broad ideation, fewer for scoped niches. After the table, list **Top 5 Recurring Topics** with: independent source count, existing paid solutions (yes/no), one-line product opportunity.
+## Phase 1.5: Evidence Cards
 
-## Phase 2: 5-Angle PM Challenge
+Before recommending anything, create compact evidence cards for the strongest candidates.
 
-Read [references/scoring-rubric.md](references/scoring-rubric.md) for detailed scoring criteria per dimension.
+Read [references/evidence-card.md](references/evidence-card.md) for the format.
+
+Rule: **no evidence card, no BUILD recommendation.** Weak evidence can still produce a watchlist or validation task.
+
+## Phase 2: PM Challenge + Kill Logic
+
+Read [references/scoring-rubric.md](references/scoring-rubric.md) for 1–10 dimensions and [references/fatal-flags.md](references/fatal-flags.md) for score caps.
 
 | Dimension | What to evaluate |
 |-----------|-----------------|
-| Need Strength | Painkiller or vitamin? Count complaints. Are people paying for inferior solutions? |
-| Willingness to Pay | Existing app pricing, subscription tiers, free alternatives people hate but tolerate |
-| Alternative Gap | Top 5-7 apps: name, rating, pricing, biggest complaint. Tag Direct/Adjacent. Flag declining recent ratings = opportunity. (higher = fewer/worse alternatives) |
-| Technical Feasibility | Solo dev feasible? Hardest challenges? Regulatory risks? (higher = easier) |
-| Startup Cost | Dev time, infra cost, time to first paying user. Solo dev. (higher = cheaper) |
+| Need Strength | Painkiller or vitamin? Complaint count, emotion, impact, workaround pain. |
+| Willingness to Pay | Paid alternatives, explicit WTP, budget owner, payer/user alignment. |
+| Alternative Gap | Direct/adjacent alternatives, satisfaction, recent decline, repeated failures. |
+| Founder Fit | Can the builder reach/build for this market? Any unfair access or domain edge? |
+| Technical Feasibility | Solo-dev feasible? Integrations, regulatory, reliability, platform risk. |
+| Startup Cost | Time/cost to first validated user and first paying user. |
 
 ### Output
 
@@ -50,74 +63,72 @@ Read [references/scoring-rubric.md](references/scoring-rubric.md) for detailed s
 | Need Strength | /10 | ... |
 | Willingness to Pay | /10 | ... |
 | Alternative Gap | /10 | ... |
+| Founder Fit | /10 | ... |
 | Technical Feasibility | /10 | ... |
 | Startup Cost | /10 | ... |
 | **Average** | **/10** | |
 
-**Verdict:** BUILD / SKIP / PIVOT to X (one sentence). If average < 6, skip Phase 3 and suggest 2-3 adjacent niches.
+Then include:
+- **Fatal flags:** none / list with score caps
+- **Opportunity score:** 0–100 using [references/opportunity-scoring.md](references/opportunity-scoring.md)
+- **Verdict:** BUILD / PIVOT to X / VALIDATE FIRST with Y / SKIP
 
-## Phase 3: App Store Deep Validation
+If average < 6 or opportunity score < 65, skip deep validation unless the user explicitly asks.
 
-Run only if Phase 2 average ≥ 6.
+## Phase 3: Market Validation Router
 
-### Step 1: Competitor Intelligence
+Use the market type to pick the right validation path. Read [references/market-validation-router.md](references/market-validation-router.md).
 
-Search iTunes with multiple keyword angles (niche term, adjacent term, solution term). Single keywords miss 30-50% of competitors.
+Default routes:
+- **iOS/mobile:** delegate to `app-store-product-researcher` for competitor discovery, Sensor Tower estimates, recent reviews, gap, and App Store-specific score. Request an app concept only if Phase 4 blueprint thresholds pass.
+- **Android:** Google Play/manual web fallback until a Google Play specialist exists.
+- **SaaS/B2B:** G2, Capterra, Product Hunt, pricing pages, case studies, Reddit/forum complaints.
+- **Chrome extension:** Chrome Web Store reviews, permissions, pricing, update cadence.
+- **Devtool:** GitHub/npm/PyPI downloads, issues, HN/Reddit, docs/pricing.
+- **Marketplace app:** Shopify/WordPress/Slack/Notion/Zapier marketplace reviews.
 
-If App Store research helper scripts are available, prefer them. Resolve location from `$APP_STORE_RESEARCHER_DIR` or local skill/script paths. If unavailable, use web search and App Store pages. Label any unavailable fields as `unknown` rather than fabricating.
+### Required Phase 3 Output
 
-Report per competitor: name, ID, Type (Direct/Adjacent), downloads, revenue, rating, value prop, pricing, why it leads. Include source, date, and estimate label for all figures. **Realistic Revenue Ceiling** = Direct app earnings only, not adjacent giants.
+- Market type and selected route
+- Direct vs adjacent competitors
+- Recent complaint/review themes
+- Competitor loophole: what incumbents ignore or consistently fail at
+- Realistic revenue/market ceiling from direct competitors only
+- Build/skip/pivot verdict with evidence confidence
 
-### Step 2: Review Analysis
+## Phase 4: Conditional Blueprint
 
-Top 3 Direct competitors. Fetch reviews if helper scripts available; otherwise use web search.
+Only generate product blueprints if:
+- opportunity score ≥ 70, or
+- PM average ≥ 7, or
+- the user explicitly asks for speculative concepts.
 
-**Recent sentiment check** (most valuable signal): avg rating of recent 50 vs overall. Gap > 0.5 stars = declining = opportunity.
+Blueprints for weak ideas create slop. If thresholds fail, give validation experiments or adjacent pivots instead.
 
-**Positive:** Top 5 compliments (frequency), core emotional win, most-mentioned features.
-**Negative:** Top 10 complaints (frequency), uninstall triggers, "wish list" items.
-Include 2-3 verbatim quotes for strongest patterns.
+Blueprint fields:
+- Wedge
+- First user segment
+- MVP scope
+- First validation test
+- Pricing hypothesis
+- Acquisition channel
+- Why now
 
-### Step 3: Identify the Gap
+## Multi-Agent Mode
 
-1. **Biggest unmet need** — users keep describing, no app solves
-2. **Consistent failure** — ALL top apps get wrong
-3. **Switching trigger** — what makes a loyal user switch
-4. **Emotional pain** — apps treat as edge case
+For broad or high-stakes research, use parallel evidence collectors and a skeptical coordinator.
 
-Be specific. "Apps are buggy" ✗ — "Reminder system fails silently after iOS updates, breaking streak tracking" ✓
+Read [references/multi-agent-mode.md](references/multi-agent-mode.md).
 
-No gap found = say so. Satisfied users = move on.
-
-### Step 4: App Concept
-
-- **Names** (3): memorable, domain-available, communicates benefit
-- **Features** (3-5 max): each mapped to a specific review complaint
-- **Onboarding**: step-by-step, time-to-first-win
-- **Monetization**: paywall timing, pricing vs competitors, free vs gated
-- **Viral concept**: video hook (first 3s) + structure + why it resonates
-
-### Step 5: Final Score
-
-Read [references/scoring-rubric.md](references/scoring-rubric.md) for detailed criteria per dimension.
-
-| Dimension | Score | Reasoning |
-|-----------|-------|-----------|
-| Pain severity | /10 | Review emotion + frequency |
-| Market size | /10 | Direct competitor downloads |
-| Competition gap | /10 | 10 = massive unmet need |
-| Monetization potential | /10 | Competitor pricing + willingness |
-| Build difficulty | /10 | 10 = trivial, 1 = deep expertise (inverse) |
-| **Overall** | **/10** | |
-
-**Verdict threshold:** ≥8 BUILD, 7-8 BUILD with differentiation, 6-7 PROMISING (needs X), <6 SKIP (suggest pivots).
+Subagents should collect evidence or challenge assumptions — not independently invent product ideas.
 
 ## Rules
 
-- Never fabricate data. Can't find it? Say so.
-- Brutally honest. 4/10 > polite 7/10.
-- Include non-English pain points if the niche has international users.
-- <3 direct competitors = flag (opportunity OR no market).
-- Revenue figures = always estimates, label with source and date.
-- Ground findings in real evidence: quotes, data, pricing.
-- Prefer helper scripts for deterministic data when available.
+- Never fabricate data. Unknown beats invented.
+- Brutally honest. A real 4/10 is better than a polite 7/10.
+- Distinguish Direct vs Adjacent competitors.
+- Few competitors is ambiguous: opportunity **or** no market.
+- App reviews can be Phase 1 mining signals, not only Phase 3 validation.
+- No BUILD verdict without source quotes, WTP evidence, competitor context, and founder-fit check.
+- Do not recommend generic AI wrappers unless workflow pain and paid alternatives are proven.
+- Prefer specialist scripts/skills for deterministic data; label unavailable fields as `unknown`.
